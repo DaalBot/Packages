@@ -1,0 +1,15 @@
+{
+  "name": "@daalbot/api",
+  "version": "0.1.0",
+  "description": "A wrapper for the DaalBot API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^22.10.5",
+    "axios": "^1.7.9"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@daalbot/cli",
+  "version": "1.0.0",
+  "description": "A CLI to manage DaalBot from the terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm install -g && rm -r fakeproject && mkdir fakeproject && cd fakeproject && npm init -y && npx daalbot && npm uninstall -g @daalbot/cli && cd .."
+  },
+  "bin": {
+    "daalbot": "./index.js"
+  },
+  "author": "Piny",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^7.4.0",
+    "axios": "^1.9.0"
+  }
+}

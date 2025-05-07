@@ -1,0 +1,19 @@
+{
+  "name": "@daalbot/events",
+  "version": "0.2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "daalbot"
+  ],
+  "author": "npiny",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@npiny/csvman": "^0.0.3",
+    "@types/node": "^22.10.5",
+    "discord.js": "^14.19.3"
+  }
+}
