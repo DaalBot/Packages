@@ -6,9 +6,15 @@ const { default: axios } = require('axios');
 async function run() {
     const authHeader = auth.getAuthHeader();
 
-    const guildId = await input({
-        message: 'Enter your guild ID:',
-    });
+    let guildId = '';
+
+    if (authHeader.startsWith('Guild ')) {
+        guildId = Buffer.from(authHeader.split(' ')[1].split('.')[0], 'base64').toString('utf-8');
+    } else {
+        guildId = await input({
+            message: 'Enter your guild ID:',
+        });
+    }
 
     const res = await axios.get(`https://api.daalbot.xyz/dashboard/events/entires?guild=${guildId}`, {
         headers: {
