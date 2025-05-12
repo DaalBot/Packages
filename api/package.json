@@ -1,15 +1,13 @@
 {
-  "name": "@daalbot/api",
-  "version": "0.1.0",
-  "description": "A wrapper for the DaalBot API",
-  "main": "index.js",
   "scripts": {
-    "test": "node tests/index.js"
+    "test": "DAALBOT_API_WRAPPER_TEST_ENABLE=1 tsx tests/run.ts"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@types/node": "^22.10.5",
-    "axios": "^1.7.9"
+    "axios": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "discord.js": "^14.19.3",
+    "typescript": "^5.8.3"
   }
 }
