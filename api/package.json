@@ -1,4 +1,6 @@
 {
+  "name": "@daalbot/api",
+  "version": "1.0.0-alpha-1",
   "scripts": {
     "test": "DAALBOT_API_WRAPPER_TEST_ENABLE=1 tsx tests/run.ts"
   },
