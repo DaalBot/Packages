@@ -1,4 +1,4 @@
-import { DBAPI } from "@/classes.js";
+import { DBAPI } from "@/classes";
 import axios from "axios";
 
 export async function send(api: DBAPI, message: any, channel: string, extra?: {mode?: 'reply' | 'edit', id?: string, webhook?: {name: string, avatar: string}}) {

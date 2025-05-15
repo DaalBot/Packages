@@ -1,4 +1,4 @@
-import type { DBAPI } from "@/classes.js";
+import type { DBAPI } from "@/classes";
 import axios from "axios";
 
 export async function get(api: DBAPI, user: string): Promise<string> {

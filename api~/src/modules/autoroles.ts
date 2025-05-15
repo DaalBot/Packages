@@ -1,4 +1,4 @@
-import { DBAPI } from "@/classes.js";
+import { DBAPI } from "@/classes";
 import axios from "axios";
 
 export async function del(api: DBAPI, roleId: string) {

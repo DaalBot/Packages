@@ -1,5 +1,5 @@
-import { DBAPI } from "@/classes.js";
-import { GatewayEvent } from "@/types.js";
+import { DBAPI } from "@/classes";
+import { GatewayEvent } from "@/types";
 import axios from "axios";
 
 export async function getChannel(api: DBAPI): Promise<string> {

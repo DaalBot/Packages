@@ -1,7 +1,7 @@
-import { DBAPI } from "@/classes.js";
+import { DBAPI } from "@/classes";
 import axios from "axios";
 
-export interface CurrentUserResponse {
+interface CurrentUserResponse {
     user: {
         id: string;
         username: string;

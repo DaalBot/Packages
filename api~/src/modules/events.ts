@@ -1,8 +1,8 @@
-import { DBAPI } from "@/classes.js";
-import type { GatewayEvent } from "@/types.js";
+import { DBAPI } from "@/classes";
+import type { GatewayEvent } from "@/types";
 import axios from "axios";
 
-export type Event = {id: string; guild: string; on: GatewayEvent; name: string; description: string; enabled: boolean};
+type Event = {id: string; guild: string; on: GatewayEvent; name: string; description: string; enabled: boolean};
 
 export async function delVariable(api: DBAPI, scope: 'global' | string, variableName: string) {
     await axios.delete(`${api.base}/dashboard/events/variables?guild=${api.guildId}&name=${encodeURIComponent(variableName)}&scope=${scope}`, {

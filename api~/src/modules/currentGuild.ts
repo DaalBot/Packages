@@ -1,7 +1,7 @@
-import { DBAPI } from "@/classes.js";
+import { DBAPI } from "@/classes";
 import axios from "axios";
 
-export interface CurrentGuildResponse {
+interface CurrentGuildResponse {
     channels: {
         id: string;
         type: number;

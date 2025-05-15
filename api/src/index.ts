@@ -1,5 +1,5 @@
-import { DBAPI } from "./classes";
-import * as modules from "./modules";
+import { DBAPI } from "./classes.js";
+import * as modules from "./modules.js";
 
 export {
     DBAPI,

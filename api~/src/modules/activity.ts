@@ -1,4 +1,4 @@
-import { DBAPI } from "@/classes.js";
+import { DBAPI } from "@/classes";
 import axios from "axios";
 
 export default async function(api: DBAPI): Promise<Array<{method: string; route: string; ts: number; executor: string; comment: string}>> {
