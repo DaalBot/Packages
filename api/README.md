@@ -8,7 +8,7 @@ npm install @daalbot/api
 ```
 ## Usage
 ```typescript
-import { DBAPI, getCurrentUser } from '@daalbot/api';
+import { DBAPI, modules } from '@daalbot/api';
 
 const api = new DBAPI({
     auth: {
@@ -18,7 +18,7 @@ const api = new DBAPI({
     guildId: 'Your Guild ID Here' // Required, even if only using routes that don't require a guild, if that's the case, this isn't validated just put 0
 });
 
-const user = await getCurrentUser(api);
+const user = await modules.getCurrentUser(api);
 console.log(user);
 ```
 
