@@ -12,7 +12,7 @@ export async function delVariable(api: DBAPI, scope: 'global' | string, variable
     })
 }
 
-export async function getVariable(api: DBAPI, scope: 'global' | string, variableName?: string): Promise<Array<{name: string, value: string}> | string> {
+export async function getVariable(api: DBAPI, scope: 'global' | string, variableName?: string): Promise<Array<{name: string, value: string}>> {
     const { data } = await axios.get(`${api.base}/dashboard/events/variable?guild=${api.guildId}${variableName ? `&name=${encodeURIComponent(variableName)}` : ''}&scope=${scope}`, {
         headers: {
             Authorization: `${api.auth.type} ${api.auth.token}`,
@@ -23,15 +23,13 @@ export async function getVariable(api: DBAPI, scope: 'global' | string, variable
 }
 
 export async function setVariable(api: DBAPI, scope: 'global' | string, variableName: string, value: string) {
-    const { data } = await axios.post(`${api.base}/dashboard/events/variable?guild=${api.guildId}&scope=${scope}&name=${encodeURIComponent(variableName)}`, {
+    await axios.post(`${api.base}/dashboard/events/variables?guild=${api.guildId}&scope=${scope}&name=${encodeURIComponent(variableName)}`, {
         data: value
     }, {
         headers: {
             Authorization: `${api.auth.type} ${api.auth.token}`,
         }
     })
-
-    return data.data;
 }
 
 export async function read(api: DBAPI, id: string): Promise<string> {

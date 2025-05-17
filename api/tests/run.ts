@@ -1,5 +1,6 @@
 import fs from 'fs';
 
+const __dirname = import.meta.dirname; // Why, just why, is this not in ESM??
 const testFiles = fs.readdirSync(__dirname).filter(file => file.endsWith('.test.ts'));
 
 const originalConsoleLog = console.log;
@@ -15,6 +16,7 @@ console.info = (...args: any[]) => originalConsoleInfo(`\u001b[34m`, ...args, `\
 console.debug = (...args: any[]) => originalConsoleDebug(`\u001b[35m`, ...args, `\u001b[0m`);
 
 (async() => {
+    let failedTests = [];
     for (const file of testFiles) {
         try {
             const { default: test } = await import(`${__dirname}/${file}`);
@@ -25,7 +27,18 @@ console.debug = (...args: any[]) => originalConsoleDebug(`\u001b[35m`, ...args, 
         } catch (error) {
             console.error(`Error in ${file}:`, error);
             console.info(`\n`);
+
+            failedTests.push(file);
         }
     }
-    console.log(`All tests completed.`);
+    
+    if (failedTests.length > 0) {
+        console.error(`Not all tests passed. Failed tests (${failedTests.length}/${testFiles.length}):`);
+        for (const test of failedTests) {
+            console.error(`- ${test.replace('.test.ts', '')}`);
+        }
+        process.exit(1);
+    } else {
+        console.log(`✅ All tests passed!`);
+    }
 })()
