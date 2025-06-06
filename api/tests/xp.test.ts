@@ -24,15 +24,18 @@ export default async function() {
 
     await modules.setUserXP(api, '900126154881646634', parseInt(startingXP)); // I would quite like to keep my XP, thanks
 
-    // TODO (FIXME): Broken API side
+    // TODO (FIXME): Still broken, but I don't know why i got it working on the dashboard
     // await modules.addXPReward(api, 10, '1371459089720147978');
 
     // const newRewards = await modules.getXPRewards(api);
     // console.debug(`XP Rewards: ${newRewards.length} rewards found`);
     // if (newRewards.length != rewards.length + 1) throw new Error(`XP Rewards length was ${newRewards.length} instead of ${rewards.length + 1}`);
     // console.debug(`XP Rewards length was ${newRewards.length} as expected`);
-    // const newReward = newRewards.find(r => r.role == '1371459089720147978');
+    // const newReward = newRewards.find(r => r.reward == '1371459089720147978');
     // if (!newReward) throw new Error(`XP Reward was not found`);
     // console.debug(`XP Reward was found`);
     // if (newReward.level != 10) throw new Error(`XP Reward XP was ${newReward.level} instead of 10`);
+
+    const users = await modules.getUsersWithXP(api);
+    console.debug(`Users with XP: ${users.length} users found`);
 }

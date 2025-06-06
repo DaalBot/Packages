@@ -62,7 +62,7 @@ export default async function() {
 
     const newVariables = await modules.getEventVariable(api, 'global') as Array<{ name: string, value: string }>;
     const newVariableFound = newVariables.find((e) => e.name === 'test');
-    if (!newVariableFound) throw new Error(`New variable not found in variables list`); // Failed??
+    if (!newVariableFound) throw new Error(`New variable not found in variables list`);
     console.debug(`New variable found in variables list`);
 
     const newVariableValue = await modules.getEventVariable(api, 'global', 'test');

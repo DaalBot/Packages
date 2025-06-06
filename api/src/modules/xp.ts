@@ -29,7 +29,7 @@ export async function delReward(api: DBAPI, level: number) {
     })
 }
 
-export async function getRewards(api: DBAPI): Promise<Array<{level: number; role: string}>> {
+export async function getRewards(api: DBAPI): Promise<Array<{level: number; reward: string}>> {
     const { data } = await axios.get(`${api.base}/dashboard/xp/rewards?guild=${api.guildId}`, {
         headers: {
             Authorization: `${api.auth.type} ${api.auth.token}`,
@@ -44,6 +44,16 @@ export async function addReward(api: DBAPI, level: number, role: string) {
         level: `${level}`,
         value: role
     }, {
+        headers: {
+            Authorization: `${api.auth.type} ${api.auth.token}`,
+        }
+    })
+
+    return data.data;
+}
+
+export async function getUsersWithXP(api: DBAPI): Promise<Array<{ user: string; xp: number }>> {
+    const { data } = await axios.get(`${api.base}/dashboard/xp/user?guild=${api.guildId}`, {
         headers: {
             Authorization: `${api.auth.type} ${api.auth.token}`,
         }

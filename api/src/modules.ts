@@ -6,7 +6,7 @@ import { set as writeDatabase, get as readDatabase, del as deleteDatabase } from
 import { createEvent, delEvent, delVariable as deleteEventVariable, getEvents, getVariable as getEventVariable, read as readEventCode, setState as setEventState, setVariable as setEventVariable, write as writeEventCode } from '$mod/events.js';
 import { getChannel as getLogsChannel, getState as getLogsState } from '$mod/logs.js';
 import { send as sendMessage } from '$mod/messages.js';
-import { addReward as addXPReward, getRewards as getXPRewards, delReward as deleteXPReward, get as getUserXP, set as setUserXP } from '$mod/xp.js';
+import { addReward as addXPReward, getRewards as getXPRewards, delReward as deleteXPReward, get as getUserXP, set as setUserXP, getUsersWithXP } from '$mod/xp.js';
 
 export {
     activity as getActivity,
@@ -34,5 +34,6 @@ export {
     getXPRewards,
     deleteXPReward,
     getUserXP,
+    getUsersWithXP,
     setUserXP
 }
