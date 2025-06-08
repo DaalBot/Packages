@@ -1,6 +1,6 @@
 {
   "name": "@daalbot/api",
-  "version": "1.0.0-alpha-0.4a",
+  "version": "1.0.0-alpha-0.5",
   "type": "module",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
