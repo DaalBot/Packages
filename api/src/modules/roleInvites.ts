@@ -1,7 +1,7 @@
 import { DBAPI } from "@/classes.js";
 import axios from "axios";
 
-interface RoleInviteData {
+export interface RoleInviteData {
     enabled: boolean;
     links: Record<string, Array<string>>;
 }

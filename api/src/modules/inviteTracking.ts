@@ -1,7 +1,7 @@
 import { DBAPI } from "@/classes.js";
 import axios from "axios";
 
-interface InviteTrackingData {
+export interface InviteTrackingData {
     enabled: boolean;
     invites: Array<{
         code: string;
