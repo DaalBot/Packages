@@ -8,7 +8,7 @@ import { getChannel as getLogsChannel, getState as getLogsState, setChannel as s
 import { send as sendMessage } from '$mod/messages.js';
 import { addReward as addXPReward, getRewards as getXPRewards, delReward as deleteXPReward, get as getUserXP, set as setUserXP, getUsersWithXP } from '$mod/xp.js';
 import { getInviteTrackingData, toggleInviteTracking } from '$mod/inviteTracking.js';
-import { createLink as createRoleLink, deleteLink as deleteRoleLink, getLinks as getRoleLinks } from '$mod/roleInvites.js'
+import { createLink as createRoleLink, deleteLink as deleteRoleLink, getLinks as getRoleLinks, toggleRoleInvites as toggleRoleLinks } from '$mod/roleInvites.js'
 
 export {
     activity as getActivity,
@@ -43,6 +43,7 @@ export {
     createRoleLink,
     deleteRoleLink,
     getRoleLinks,
+    toggleRoleLinks,
     getInviteTrackingData,
     toggleInviteTracking
 }

@@ -6,6 +6,14 @@ export interface RoleInviteData {
     links: Record<string, Array<string>>;
 }
 
+export async function toggleRoleInvites(api: DBAPI, enabled: boolean): Promise<void> {
+    await axios.post(`${api.base}/dashboard/invites/roles/toggle?guild=${api.guildId}&state=${enabled}`, {}, {
+        headers: {
+            Authorization: `${api.auth.type} ${api.auth.token}`,
+        }
+    });
+}
+
 export async function createLink(api: DBAPI, inviteCode: string, roleId: string): Promise<void> {
     await axios.post(`${api.base}/dashboard/invites/roles?guild=${api.guildId}&role=${roleId}&invite=${inviteCode}`, {}, {
         headers: {
