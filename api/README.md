@@ -1,6 +1,5 @@
 # DaalBot API (Wrapper)
 This is a wrapper for the DaalBot API. It provides a simple typed interface to interact with DaalBot's API. The API is built using TypeScript and is designed to be easy to use and understand.
-Note: This is currently using a as of yet unreleased version of the API, so some things may change.
 
 ## Installation
 ```bash
