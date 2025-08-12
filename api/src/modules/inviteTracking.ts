@@ -6,6 +6,7 @@ export interface InviteTrackingData {
     invites: Array<{
         code: string;
         uses: number;
+        creator: string;
         users: Array<string>;
     }>
 }
