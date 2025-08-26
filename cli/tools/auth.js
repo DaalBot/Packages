@@ -50,7 +50,7 @@ async function setAuthHeader() {
                         console.log('Server closed.');
                     }
                 });
-                fs.writeFileSync(__dirname + '/../auth.txt', `${code}`);
+                fs.writeFileSync(__dirname + '/../auth.txt', `User ${code}`);
             }
         });
 
@@ -67,7 +67,7 @@ async function setAuthHeader() {
         });
 
         // Open the authentication URL in the default browser
-        const authUrl = `https://daalbot.xyz/Dashboard/User/get-token?name=DaalBot%20CLI&return=http%3A%2F%2Flocalhost%3A8331%2Fcallback`;
+        const authUrl = `https://dashboard.daalbot.xyz/get-token?name=DaalBot%20CLI&return=http%3A%2F%2Flocalhost%3A8331%2Fcallback`;
         console.log(`Opening authentication URL in your default browser.`);
         
         switch (process.platform) {

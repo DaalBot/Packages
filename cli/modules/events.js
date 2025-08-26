@@ -2,6 +2,7 @@ const fs = require('fs');
 const { input, select, confirm } = require('@inquirer/prompts');
 const auth = require('../tools/auth');
 const { default: axios } = require('axios');
+const { DBAPI, modules } = require('@daalbot/api');
 
 async function run() {
     const authHeader = auth.getAuthHeader();
@@ -11,23 +12,37 @@ async function run() {
     if (authHeader.startsWith('Guild ')) {
         guildId = Buffer.from(authHeader.split(' ')[1].split('.')[0], 'base64').toString('utf-8');
     } else {
-        guildId = await input({
-            message: 'Enter your guild ID:',
+        console.log('Fetching mutual guilds...')
+        const res = await axios.get(`https://api.daalbot.xyz/guilds/mutual`, {
+            headers: {
+                Authorization: authHeader,
+            },
         });
+
+        if (res.status === 200) {
+            const guilds = res.data.data;
+            guildId = await select({
+                message: 'Select a guild:',
+                choices: guilds.map((guild) => ({
+                    name: guild,
+                    value: guild,
+                })),
+            });
+        } else {
+            console.error('Error fetching mutual guilds:', res.data);
+            return;
+        }
     }
 
-    const res = await axios.get(`https://api.daalbot.xyz/dashboard/events/entires?guild=${guildId}`, {
-        headers: {
-            Authorization: authHeader,
+    const api = new DBAPI({
+        auth: {
+            type: authHeader.split(' ')[0],
+            token: authHeader.split(' ')[1],
         },
-    })
+        guildId
+    });
 
-    if (res.status !== 200) {
-        console.error('Error fetching events:', res.data);
-        return;
-    }
-
-    const events = res.data;
+    const events = await modules.getEvents(api);
 
     if (events.length === 0) 
         return console.log('No events found for this guild.');
@@ -67,24 +82,16 @@ async function run() {
             message: 'Enter a description for the event:',
         });
 
-        const eventOn = await input({
-            message: 'Enter the gateway event to listen to (e.g. messageCreate):',
+        const validEventTriggers = (await axios.get('https://cdn.jsdelivr.net/gh/DaalBot/API/config/events.json')).data.event_types;
+
+        const eventTrigger = await select({
+            message: 'Select the event trigger:',
+            choices: validEventTriggers
         });
 
-        const res = await axios.post(`https://api.daalbot.xyz/dashboard/events/create?guild=${guildId}&name=${encodeURIComponent(eventName)}&description=${encodeURIComponent(eventDescription)}&on=${encodeURIComponent(eventOn)}`, {}, {
-            headers: {
-                Authorization: authHeader
-            }
-        })
+        const event = await modules.createEvent(api, eventTrigger, eventName, eventDescription);
 
-        if (res.status !== 200) {
-            console.error('Error creating event:', res.data);
-            return;
-        }
-
-        const eventId = res.data.id;
-
-        return console.log(`Event created with ID: ${eventId}`);
+        return console.log(`Event created with ID: ${event.id}`);
     }
 
     const selectedEvent = await select({
@@ -104,28 +111,15 @@ async function run() {
 
         if (!confirmDelete) return;
 
-        const res = await axios.delete(`https://api.daalbot.xyz/dashboard/events/remove?guild=${guildId}&id=${selectedEvent}`, {
-            headers: {
-                Authorization: authHeader
-            }
-        });
+        await modules.delEvent(api, selectedEvent);
 
-        console.log('Event deleted:', res.data);
+        console.log('Event deleted:', selectedEvent);
     }
 
     if (selectedAction.endsWith('download')) {
-        const res = await axios.get(`https://api.daalbot.xyz/dashboard/events/read?guild=${guildId}&id=${selectedEvent}`, {
-            headers: {
-                Authorization: authHeader
-            }
-        });
+        const eventCode = await modules.readEventCode(api, selectedEvent);
 
-        if (res.status !== 200) {
-            console.error('Error downloading event:', res.data);
-            return;
-        }
-
-        const data = selectedAction == 'raw-download' ? res.data : `//--IMPORTS-- (Not uploaded)\nconst { util } = require('@daalbot/events');/** @type {import('discord.js').Message} */let message = null;/** @type {import('discord.js').Interaction} */let interaction = null;\n//--EVENT--\n${res.data}`;
+        const data = selectedAction == 'raw-download' ? eventCode : `//--IMPORTS-- (Not uploaded)\nconst { util } = require('@daalbot/events');/** @type {import('discord.js').Message} */let message = null;/** @type {import('discord.js').Interaction} */let interaction = null;\n//--EVENT--\n${eventCode}`;
 
         fs.writeFileSync('./event.js', data, {
             flag: 'w'

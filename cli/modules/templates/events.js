@@ -15,7 +15,14 @@ if (eventInput && !id) id = process.env[\`EVENT_ID_\${eventInput}\`];
 const axios = require('axios');
 const fs = require('fs');
 
-const baseEventJS = \`//--IMPORTS-- (Not uploaded)\\nconst { util } = require('@daalbot/events');/** @type {import('discord.js').Message} */let message = null;/** @type {import('discord.js').Interaction} */let interaction = null;\\n//--EVENT--\\nconsole.log('Event fired!');\`
+const baseEventJS = \`//--IMPORTS-- (Not uploaded)
+const { util } = require('@daalbot/events');
+/** @type {import('discord.js').Message} */
+let message = null;
+/** @type {import('discord.js').Interaction} */
+let interaction = null;
+//--EVENT--
+console.log('Event fired!');\`
 
 if (!fs.existsSync('./event.js')) {fs.writeFileSync('./event.js', baseEventJS, {
     flag: 'w'
