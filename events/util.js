@@ -19,7 +19,8 @@ const {
     MediaGalleryBuilder,
     ChannelSelectMenuBuilder,
     AttachmentBuilder,
-    ContainerBuilder
+    ContainerBuilder,
+    MediaGalleryItemBuilder
 } = require('discord.js');
 const csvman = require('@npiny/csvman');
 const crypto = require('crypto');
@@ -60,6 +61,7 @@ module.exports = {
                 SectionBuilder,
                 ThumbnailBuilder,
                 MediaGalleryBuilder,
+                MediaGalleryItemBuilder,
                 ChannelSelectMenuBuilder,
                 AttachmentBuilder,
                 ContainerBuilder
