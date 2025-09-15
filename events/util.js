@@ -1,5 +1,26 @@
 // All the imports
-const { ModalBuilder, TextInputBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, StringSelectMenuOptionBuilder, StringSelectMenuBuilder, TextInputStyle, ChannelType, ButtonStyle, MessageFlags } = require('discord.js');
+const { 
+    ModalBuilder, 
+    TextInputBuilder, 
+    EmbedBuilder, 
+    ActionRowBuilder, 
+    ButtonBuilder, 
+    StringSelectMenuOptionBuilder, 
+    StringSelectMenuBuilder, 
+    TextInputStyle, 
+    ChannelType, 
+    ButtonStyle, 
+    MessageFlags,
+    SeparatorSpacingSize,
+    TextDisplayBuilder,
+    SeparatorBuilder,
+    SectionBuilder,
+    ThumbnailBuilder,
+    MediaGalleryBuilder,
+    ChannelSelectMenuBuilder,
+    AttachmentBuilder,
+    ContainerBuilder
+} = require('discord.js');
 const csvman = require('@npiny/csvman');
 const crypto = require('crypto');
 
@@ -33,13 +54,22 @@ module.exports = {
                 ActionRowBuilder,
                 ButtonBuilder,
                 StringSelectMenuOptionBuilder,
-                StringSelectMenuBuilder
+                StringSelectMenuBuilder,
+                TextDisplayBuilder,
+                SeparatorBuilder,
+                SectionBuilder,
+                ThumbnailBuilder,
+                MediaGalleryBuilder,
+                ChannelSelectMenuBuilder,
+                AttachmentBuilder,
+                ContainerBuilder
             },
             enum: {
                 TextInputStyle,
                 ChannelType,
                 ButtonStyle,
-                MessageFlags
+                MessageFlags,
+                SeparatorSpacingSize
             },
             embed: EmbedBuilder,
             components: {
